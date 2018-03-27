@@ -1,0 +1,14 @@
+label {
+  display: inline-block;
+  width: 65px;
+}
+
+.btn {
+  height: 30px;
+  width: 80px;
+  background-color: lightgrey;
+}
+
+.hidden {
+  visibility: hidden;
+}
