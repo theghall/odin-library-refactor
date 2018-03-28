@@ -17,17 +17,21 @@ function getLastIndex() {
 	return libDB.length - 1;
 }
 
+function lastBook() {
+	return libDB.slice(-1)[0];
+}
+
 function loadSampleData() {
 	libDB.push(new Book("Catch-22", "Joseph Heller", 453, "yes"));
-	render(libDB.slice(-1)[0]);
+	render(lastBook());
 	libDB.push(new Book("Moby Dick", "Herman Melville", 366, 'yes'));
-	render(libDB.slice(-1)[0]);
+	render(lastBook());
 	libDB.push(new Book("Heart of Darkness", "Joseph Conrad", 77, "yes"));
-	render(libDB.slice(-1)[0]);
+	render(lastBook());
 	libDB.push(new Book("On Basilisk Station", "David Weber", 422, "yes"));
-	render(libDB.slice(-1)[0]);
+	render(lastBook());
 	libDB.push(new Book("The Endurance: Shackleton's Legendary Antartic Expidition", "Caroline Alexander", 224, "yes"));
-	render(libDB.slice(-1)[0]);
+	render(lastBook());
 
 }
 
@@ -128,7 +132,7 @@ function addBook(event, bookForm, showAddButton) {
 
 	addToLibDB(new Book(title, author, pages, read));
 
-	render(libDB.slice(-1)[0]);
+	render(lastBook());
 
 	toggleHidden(bookForm);
 	resetForm();
