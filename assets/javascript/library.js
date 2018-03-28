@@ -2,11 +2,7 @@
 
 let libDB = [];
 
-function getLastIndex() {
-	return libDB.length - 1;
-}
-
-function Book(title, author, pages , read = false) {
+function Book(title, author, pages , read = 'no') {
 	this.title = title;
 	this.author = author;
 	this.pages = pages;
@@ -15,6 +11,24 @@ function Book(title, author, pages , read = false) {
 
 Book.prototype.toggleRead = function() {
 	this.read = (this.read === 'yes' ? 'no' : 'yes');
+}
+
+function getLastIndex() {
+	return libDB.length - 1;
+}
+
+function loadSampleData() {
+	libDB.push(new Book("Catch-22", "Joseph Heller", 453, "yes"));
+	render(libDB.slice(-1)[0]);
+	libDB.push(new Book("Moby Dick", "Herman Melville", 366, 'yes'));
+	render(libDB.slice(-1)[0]);
+	libDB.push(new Book("Heart of Darkness", "Joseph Conrad", 77, "yes"));
+	render(libDB.slice(-1)[0]);
+	libDB.push(new Book("On Basilisk Station", "David Weber", 422, "yes"));
+	render(libDB.slice(-1)[0]);
+	libDB.push(new Book("The Endurance: Shackleton's Legendary Antartic Expidition", "Caroline Alexander", 224, "yes"));
+	render(libDB.slice(-1)[0]);
+
 }
 
 function resetForm() {
@@ -162,6 +176,8 @@ function ready() {
 	document.addEventListener('click', function(e) { actionClick(e); });
 
 	showAddButton.classList.toggle('hidden');
+
+	loadSampleData();
 }
 
 document.addEventListener("DOMContentLoaded", ready);
