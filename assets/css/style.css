@@ -1,6 +1,16 @@
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
 label {
   display: inline-block;
   width: 65px;
+}
+
+th {
+  text-align: left;
 }
 
 .btn {
@@ -9,6 +19,26 @@ label {
   background-color: lightgrey;
 }
 
+#del-btn {
+  margin-left: 10px;
+}
+
 .hidden {
   visibility: hidden;
+}
+
+.title {
+  width: 300px;
+}
+
+.author {
+  width: 200px;
+}
+
+.pages {
+  width: 50px;
+}
+
+.actions {
+  width: 200px;
 }
