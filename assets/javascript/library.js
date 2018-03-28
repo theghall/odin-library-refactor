@@ -13,6 +13,10 @@ function Book(title, author, pages , read = false) {
 	this.read = read;
 }
 
+Book.prototype.toggleRead = function() {
+	this.read = (this.read === 'yes' ? 'no' : 'yes');
+}
+
 function resetForm() {
 	const inputs = document.getElementById('book-form').elements;
 	let field_name;
@@ -77,8 +81,8 @@ function createDataCell(value, hidden=false) {
 function createActionButtons(tr) {
 	const td = document.createElement('td');
 
-	const readButton = '<button id="read-btn" class="btn">Read</button>'
-	const removeButton = '<button id="del-btn" class="btn">Remove</button>'
+	const readButton = '<button class="btn">Read</button>'
+	const removeButton = '<button class="btn del-btn">Remove</button>'
 
 	td.innerHTML = readButton + removeButton;
 
@@ -117,6 +121,33 @@ function addBook(event, bookForm, showAddButton) {
 	toggleHidden(showAddButton);
 }
 
+function actionClick(e) {
+	const tagName = e.target.tagName;
+	const btnLabel = e.target.innerText;
+
+	if (tagName === 'BUTTON' && (btnLabel === 'Read' || btnLabel === 'Remove')) {
+		const table = document.querySelector('#book-list');
+		const row = e.target.parentNode.parentNode;
+		const readCell = e.target.parentNode.previousSibling;
+		const libIndex = e.target.parentNode.nextSibling.textContent;
+		
+		const book = libDB[libIndex];
+
+		switch (btnLabel) {
+			case 'Read':
+				book.toggleRead();
+				readCell.textContent = book.read;
+				break;
+			case 'Remove':
+				libDB.splice(libIndex, 1);
+				table.removeChild(row);
+				break;
+			default:
+				break;
+		}
+	}
+}
+
 function addToLibDB(book) {
 	libDB.push(book);
 }
@@ -125,9 +156,10 @@ function ready() {
 	const showAddButton = document.querySelector('#show-add-book');
 	const addBookButton = document.querySelector('#add-book');
 	const bookForm = document.querySelector('#book-form');
-console.log(bookForm);
+
 	showAddButton.addEventListener('click', function(e) { showAddBook(e, bookForm); });
 	addBookButton.addEventListener('click', function(e) { addBook(e, bookForm, showAddButton); });
+	document.addEventListener('click', function(e) { actionClick(e); });
 
 	showAddButton.classList.toggle('hidden');
 }
