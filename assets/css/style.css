@@ -9,8 +9,27 @@ label {
   width: 65px;
 }
 
+table {
+  border-collapse: seperate;
+  border-spacing: 0;
+}
+
 th {
   text-align: left;
+}
+
+th,
+td {
+  padding: 10px 15px;
+}
+
+thead {
+  background: #395870;
+  color: #fff;
+}
+
+tr:nth-child(even) {
+  background: #f0f0f2;
 }
 
 .btn {
@@ -21,6 +40,11 @@ th {
 
 .del-btn {
   margin-left: 10px;
+}
+
+#show-add-book,
+#add-book { 
+  margin-top: 10px;
 }
 
 .hidden {
