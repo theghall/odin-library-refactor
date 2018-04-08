@@ -2,15 +2,49 @@
 
 let libDB = [];
 
-function Book(title, author, pages , read = 'no') {
-	this.title = title;
-	this.author = author;
-	this.pages = pages;
-	this.read = read;
-}
+class Book {
+	constructor (title, author, pages, read = 'no') {
+		this.title = title;
+		this.author = author;
+		this.pages = pages;
+		this.read = read;
+	}
 
-Book.prototype.toggleRead = function() {
-	this.read = (this.read === 'yes' ? 'no' : 'yes');
+	set title(title) {
+		this._title = title;
+	}
+
+	get title() {
+		return this._title;
+	}
+
+	set author(author) {
+		this._author = author;
+	}
+
+	get author() {
+		return this._author;
+	}
+
+	set pages(pages) {
+		this._pages = pages;
+	}
+
+	get pages() {
+		return this._pages;
+	}
+
+	set read(read) {
+		this._read = read;
+	}
+
+	get read() {
+		return this._read;
+	}
+
+	toggleRead() {
+		this.read = (this.read === 'yes' ? 'no' : 'yes');
+	}
 }
 
 function getLastIndex() {
